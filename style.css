@@ -1,0 +1,218 @@
+/* RESET  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto';
+}
+
+/* UTILITY CLASSES  */
+.cursor-pointer:hover {
+    cursor: pointer;
+}
+
+.btn {
+    min-width: 30px;
+    min-height: 25px;
+}
+
+.selected {
+    background-color: darkgray;
+}
+
+.bold {
+    font-weight: bold;
+}
+.underline {
+    text-decoration: underline;
+}
+
+.italic {
+    font-style: italic;
+}
+
+/* CONTENT STYLING  */
+
+/**************** MENU CONTAINER  ***************/
+.menu-container {
+    height: 80px;
+    background-color: darkcyan;
+    display: flex;
+    align-items: center;
+}
+
+.menu-container > * {
+    height: 80%;
+    width: 25%;
+    border-right: 2px solid;
+}
+
+.formatting-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.subgroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#fonts {
+    width: 100%;
+}
+
+#font-size {
+    width: 100%;
+}
+
+.alignment-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.alignment-container .btn {
+    width: 20%;
+}
+
+.formula-container {
+    height: 30px;
+    background-color: skyblue;
+}
+
+/******************* GRID CONTAINER *********************/
+.grid-container {
+    height: calc(100vh - (80px + 30px + 40px));
+    position: relative;
+    overflow: auto;
+}
+
+.top-left-block {
+    height: 30px;
+    min-width: 40px;
+    background-color: gray;
+}
+
+.top-row {
+    height: 30px;
+    background-color: lightgreen;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 40px;
+    overflow: auto;
+}
+
+.col {
+    min-width: 100px;
+    border: 1px solid;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-col {
+    width: 40px;
+}
+
+.left-col-box {
+    border: 1px solid red;
+    height: 30px;
+    background-color: lightgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+}
+
+.row .col {
+    display: block;
+    padding: 0.3rem;
+    overflow: auto;
+    max-width: 100px;
+}
+
+.row .col::-webkit-scrollbar {
+    display: none;
+}
+
+.row .col {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.grid {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+}
+
+/****************** SHEETS CONTAINER  ***********/
+.sheets {
+    height: 40px;
+    background-color: darkcyan;
+    display: flex;
+}
+
+.add-sheet_container {
+    height: 100%;
+    min-width: 60px;
+    background-color: lightgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    font-size: 1.3rem;
+}
+
+.sheets-list {
+    display: flex;
+    height: 100%;
+    overflow: auto;
+}
+
+.sheet {
+    min-width: 100px;
+    height: 100%;
+    display: flex;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    align-items: center;
+    justify-content: center;
+}
+
+.active-sheet {
+    background-color: white;
+    border-bottom: 4px solid lightgreen;
+}
+
+/****** FORMULA CONTAINER********/
+.formula-container {
+    display: flex;
+    align-items: center;
+    background-color: rgb(223, 223, 223);
+    justify-content: space-evenly;
+}
+.formula-container > * {
+    height: 70%;
+}
+
+.address-box {
+    width: 10%;
+}
+.separator {
+    width: 2%;
+}
+
+.formula-box {
+    width: 80%;
+}
