@@ -1,3 +1,10 @@
+:root {
+    --litewhite: #f8f9fa;
+    --litegreen: #5faa53;
+    --darkgreen: #488138;
+    --litegray: #e8eaed;
+}
+
 /* RESET  */
 * {
     margin: 0;
@@ -6,7 +13,7 @@
 }
 
 body {
-    font-family: 'Roboto';
+    font-family: "Roboto";
 }
 
 /* UTILITY CLASSES  */
@@ -17,10 +24,6 @@ body {
 .btn {
     min-width: 30px;
     min-height: 25px;
-}
-
-.selected {
-    background-color: darkgray;
 }
 
 .bold {
@@ -39,7 +42,7 @@ body {
 /**************** MENU CONTAINER  ***************/
 .menu-container {
     height: 80px;
-    background-color: darkcyan;
+    background-color: var(--litegreen);
     display: flex;
     align-items: center;
 }
@@ -53,6 +56,10 @@ body {
 .formatting-container {
     display: flex;
     justify-content: space-evenly;
+}
+
+.formatting-container > * {
+    width: 30%;
 }
 
 .subgroup {
@@ -69,6 +76,16 @@ body {
     width: 100%;
 }
 
+.style-btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.color-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .alignment-container {
     display: flex;
     justify-content: center;
@@ -78,10 +95,29 @@ body {
     width: 20%;
 }
 
+/****** FORMULA CONTAINER********/
 .formula-container {
     height: 30px;
-    background-color: skyblue;
+    display: flex;
+    align-items: center;
+    background-color: lightgray;
+    justify-content: space-evenly;
 }
+.formula-container > * {
+    height: 70%;
+}
+
+.address-box {
+    width: 10%;
+}
+.separator {
+    width: 2%;
+}
+
+.formula-box {
+    width: 80%;
+}
+
 
 /******************* GRID CONTAINER *********************/
 .grid-container {
@@ -93,12 +129,12 @@ body {
 .top-left-block {
     height: 30px;
     min-width: 40px;
-    background-color: gray;
+    background-color: var(--litegray);
 }
 
 .top-row {
     height: 30px;
-    background-color: lightgreen;
+    background-color: var(--litegray);
     display: flex;
     position: absolute;
     top: 0;
@@ -108,7 +144,7 @@ body {
 
 .col {
     min-width: 100px;
-    border: 1px solid;
+    border: 1px solid lightgray;
     min-height: 30px;
     display: flex;
     justify-content: center;
@@ -120,9 +156,9 @@ body {
 }
 
 .left-col-box {
-    border: 1px solid red;
+    border: 1px solid lightgray;
     height: 30px;
-    background-color: lightgreen;
+    background-color: var(--litewhite);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,21 +193,21 @@ body {
 /****************** SHEETS CONTAINER  ***********/
 .sheets {
     height: 40px;
-    background-color: darkcyan;
+    background-color: var(--litegray);
     display: flex;
 }
 
 .add-sheet_container {
     height: 100%;
     min-width: 60px;
-    background-color: lightgreen;
+    background-color: var(--litegray);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .icon {
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 
 .sheets-list {
@@ -184,7 +220,6 @@ body {
     min-width: 100px;
     height: 100%;
     display: flex;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     align-items: center;
     justify-content: center;
@@ -195,24 +230,3 @@ body {
     border-bottom: 4px solid lightgreen;
 }
 
-/****** FORMULA CONTAINER********/
-.formula-container {
-    display: flex;
-    align-items: center;
-    background-color: rgb(223, 223, 223);
-    justify-content: space-evenly;
-}
-.formula-container > * {
-    height: 70%;
-}
-
-.address-box {
-    width: 10%;
-}
-.separator {
-    width: 2%;
-}
-
-.formula-box {
-    width: 80%;
-}
