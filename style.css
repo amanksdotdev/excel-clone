@@ -118,7 +118,6 @@ body {
     width: 80%;
 }
 
-
 /******************* GRID CONTAINER *********************/
 .grid-container {
     height: calc(100vh - (80px + 30px + 40px));
@@ -230,3 +229,33 @@ body {
     border-bottom: 4px solid lightgreen;
 }
 
+/* MEDIA QUERIES  */
+@media (max-width: 1350px) {
+    .menu-container > * {
+        width: 33%;
+    }
+}
+
+@media (max-width: 986px) {
+    .menu-container > * {
+        width: 45%;
+    }
+}
+
+@media (max-width: 700px) {
+    .menu-container {
+        width: 100vw;
+    }
+    .menu-container > * {
+        width: 50%;
+    }
+
+    .formatting-container {
+        width: 60%;
+    }
+
+    .alignment-container {
+        width: 40%;
+    }
+    
+}
