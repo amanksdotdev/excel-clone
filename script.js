@@ -6,11 +6,12 @@ const firstSheet = document.querySelector(".sheet");
 const leftAlign = document.querySelector(".left-align");
 const centerAlign = document.querySelector(".center-align");
 const rightAlign = document.querySelector(".right-align");
-const AllCells = document.querySelectorAll(".row .col");
+const AllCells = document.querySelectorAll(".grid .col");
 
 const addressBox = document.querySelector(".address-box");
 
 const fontSizeInput = document.getElementById("font-size");
+
 // FUNCTIONS
 const handleActiveSheet = function (e) {
     const sheet = e.currentTarget;
@@ -42,13 +43,13 @@ const getCurrentCell = function () {
     return document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
 };
 
-const getCell = function(cellId){
+const getCell = function (cellId) {
     let [cid, rid] = cellId.split(/(\d+)/); // split string with number
     cid = cid.charCodeAt(0) - 65; // convert char to num
     rid--; // reduce rid to match idx
 
     return document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-}
+};
 
 const alignmentHandler = function (alignment) {
     // const [cid, rid] = getCellAddress();
@@ -88,7 +89,7 @@ rightAlign.addEventListener("click", () => {
 
 // getting cell row and col data
 for (let cell of AllCells) {
-    cell.addEventListener("click", () => {
+    cell.addEventListener("click", (e) => {
         let rid = Number(cell.getAttribute("rid"));
         let cid = Number(cell.getAttribute("cid"));
 
@@ -97,6 +98,12 @@ for (let cell of AllCells) {
         let address = colAddress + rowAddress;
 
         addressBox.value = address;
+
+        if (cell.classList.contains("bold")) {
+            document.querySelector(".bold-btn").style.backgroundColor = "#777";
+        } else {
+            document.querySelector(".bold-btn").style.backgroundColor = "";
+        }
     });
 }
 
@@ -111,9 +118,10 @@ fontSizeInput.addEventListener("change", () => {
 });
 
 //bold button handle
-document.querySelector(".bold-btn").addEventListener("click", () => {
+document.querySelector(".bold-btn").addEventListener("click", (e) => {
     const cell = getCurrentCell();
     cell.classList.toggle("bold");
+    
 });
 
 //underline btn handle
@@ -158,7 +166,6 @@ document.getElementById("bgcolor").addEventListener("change", (e) => {
 // document.querySelector(".formula-box").addEventListener("keydown", (e) => {
 //     if (e.key == "Enter") {
 //         let formula = e.currentTarget.value;
-        
 
 //     }
 // });

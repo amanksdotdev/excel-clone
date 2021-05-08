@@ -129,6 +129,7 @@ body {
     height: 30px;
     min-width: 40px;
     background-color: var(--litegray);
+    /* border: 1px solid var(--litegray); */
 }
 
 .top-row {
@@ -136,7 +137,7 @@ body {
     background-color: var(--litegray);
     display: flex;
     position: absolute;
-    top: 0;
+    top: 0px;
     left: 40px;
     overflow: auto;
 }
@@ -167,9 +168,8 @@ body {
     display: flex;
 }
 
-.row .col {
+.grid .col {
     display: block;
-    padding: 0.3rem;
     overflow: auto;
     max-width: 100px;
 }
