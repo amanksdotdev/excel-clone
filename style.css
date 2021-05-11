@@ -37,6 +37,10 @@ body {
     font-style: italic;
 }
 
+.active-btn {
+    background-color: #777;
+}
+
 /* CONTENT STYLING  */
 
 /**************** MENU CONTAINER  ***************/
@@ -257,5 +261,4 @@ body {
     .alignment-container {
         width: 40%;
     }
-    
 }

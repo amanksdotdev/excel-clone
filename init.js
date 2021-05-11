@@ -27,3 +27,30 @@ for (let i = 0; i < 100; i++) {
     gridStr += `</div>`;
 }
 grid.innerHTML = gridStr;
+
+const workSheetDB = [];
+
+const initSheet = function () {
+    const sheetDB = [];
+    for (let i = 0; i < 100; i++) {
+        const row = [];
+        for (let j = 0; j < 26; j++) {
+            const cell = {
+                bold: false,
+                italic: false,
+                underline: false,
+                fontFamily: "Roboto",
+                fontSize: "16",
+                alignment: "left",
+                value: "",
+            };
+            row.push(cell);
+        }
+        sheetDB.push(row);
+    }
+    workSheetDB.push(sheetDB);
+};
+
+initSheet();
+
+console.log(workSheetDB);
