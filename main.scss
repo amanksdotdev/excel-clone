@@ -1,0 +1,315 @@
+//FONTS
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap");
+
+//variables
+$primary-color: #49833c;
+$blue-color: #1a73e8;
+
+//RESET
+* {
+    box-sizing: border-box;
+}
+
+//UTILITY CLASS
+.hidden {
+    display: none !important;
+}
+
+//ELEMENT
+body {
+    margin: 0;
+    font-family: Lato;
+}
+
+select {
+    width: 100%;
+    border: 0;
+    background-color: #fff;
+    padding: 5px 3px;
+}
+select:focus {
+    outline: none;
+}
+
+select:hover {
+    cursor: pointer;
+    background-color: #eee;
+}
+
+//ELEMENT CLASSES
+
+// MENU SECTION
+.menu {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem 0 1rem;
+    color: #333;
+    font-family: Poppins;
+    height: 125px;
+
+    &__top {
+        display: flex;
+    }
+
+    &__file {
+        margin-left: 1rem;
+    }
+
+    &__logo {
+        height: 40px;
+        opacity: 0.8;
+    }
+
+    &__title input {
+        border: 0;
+        color: gray;
+        font-size: 1rem;
+        min-width: 10rem;
+        padding: 5px;
+    }
+    &__title input:focus {
+        outline: 1px solid lightgray;
+    }
+
+    &__filemenu {
+        display: flex;
+        font-size: 0.8rem;
+    }
+
+    &__filemenu > * {
+        margin-right: 1rem;
+        padding: 3px 5px;
+    }
+
+    &__filemenu > *:hover {
+        cursor: pointer;
+        background-color: #eee;
+    }
+
+    &__formatting {
+        display: flex;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        overflow-x: auto;
+        align-items: center;
+        margin-top: 5px;
+        padding: 5px;
+        border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
+    }
+
+    &__formatting::-webkit-scrollbar {
+        display: none;
+    }
+
+    &__fontFamily {
+        min-width: 100px;
+    }
+    &__fontSize {
+        min-width: 70px;
+    }
+
+    &__formatting > * {
+        margin-right: 1rem;
+        border-right: 1px solid lightgray;
+        padding-right: 1rem;
+    }
+
+    &-btn {
+        color: gray;
+        padding: 10px;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #eee;
+        }
+
+        &--active {
+            background-color: #eee;
+            color: $primary-color;
+        }
+
+        &--fontColor {
+            display: inline-block;
+            position: relative;
+        }
+        &--colorDiv {
+            height: 4px;
+            width: 60%;
+            background-color: #333;
+            position: absolute;
+            top: 30px;
+            left: 7px;
+        }
+    }
+}
+
+// FORMULA SECTION
+.formula {
+    display: flex;
+    padding: 0 1rem;
+    width: 100vw;
+    border-bottom: 1px solid lightgray;
+    height: 30px;
+
+    & > *:focus {
+        outline: none;
+    }
+    &__address-box {
+        width: 100px;
+        margin-right: 5%;
+        text-align: center;
+        border: none;
+        border-left: 1px solid lightgray;
+        border-right: 1px solid lightgray;
+        padding: 5px;
+    }
+    &__formula-box {
+        width: 70%;
+        border: none;
+        border-left: 1px solid lightgray;
+        border-right: 1px solid lightgray;
+        padding: 5px;
+    }
+}
+
+/* GRID SECTION */
+.grid {
+    height: calc(100vh - (125px + 30px + 40px));
+    position: relative;
+    overflow: auto;
+
+    &__top-left-block {
+        height: 30px;
+        min-width: 40px;
+        background-color: gray;
+        position: absolute;
+        z-index: 100;
+    }
+
+    &__top-row {
+        height: 30px;
+        background-color: #f1f3f4;
+        display: flex;
+        position: absolute;
+        top: 0px;
+        left: 40px;
+        overflow: auto;
+        z-index: 90;
+        color: #555;
+    }
+
+    &__col {
+        min-width: 100px;
+        border: 1px solid lightgray;
+        min-height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &--active {
+            border: 2px solid $blue-color;
+        }
+    }
+
+    &__left-col {
+        width: 40px;
+        position: absolute;
+        top: 30px;
+        z-index: 90;
+    }
+    &__left-col-box {
+        border: 1px solid lightgray;
+        height: 30px;
+        background-color: #f1f3f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #555;
+    }
+
+    &__cells-container {
+        position: absolute;
+        top: 30px;
+        left: 40px;
+    }
+
+    &__cells-container .grid__col {
+        display: block;
+        overflow: auto;
+        max-width: 100px;
+        font-family: Arial;
+
+        &:not(.grid__col--active):hover {
+            border: 1px solid $primary-color;
+        }
+    }
+
+    &__row {
+        display: flex;
+    }
+    &__row .grid__col::-webkit-scrollbar {
+        display: none;
+    }
+
+    &__row .grid__col {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+/* SHEETS SECTION  */
+.sheets {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    background-color: #f1f3f4;
+
+    &__add-btn {
+        height: 100%;
+        min-width: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        border-right: 1px solid gray;
+        border-radius: 0 30px 0 0;
+        box-shadow: 8px 0 5px -2px rgba(255, 255, 255, 0.25);
+        background-color: #49833c;
+    }
+
+    &__add-btn:hover {
+        cursor: pointer;
+    }
+    &__list {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        overflow: auto;
+        color: #444;
+        padding: 0 20px;
+    }
+
+    &__sheet {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        min-width: 100px;
+    }
+
+    &__sheet:not(.sheets__sheet--active):hover {
+        cursor: pointer;
+    }
+    &__sheet--active {
+        background-color: #fff;
+        color: #49833c;
+        box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.25);
+    }
+}
