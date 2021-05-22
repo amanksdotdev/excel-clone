@@ -112,7 +112,7 @@ const updateUI = function () {
 
         //font size update
         menu_fontSize.value = cellObj.fontSize;
-        cell.style.fontSize = cellObj.fontSize;
+        cell.style.fontSize = cellObj.fontSize + "px";
 
         //value update
         cell.innerText = cellObj.value;
