@@ -1,0 +1,14 @@
+{
+    "name": "excel-clone",
+    "version": "1.0.0",
+    "description": "Cross platform spreadsheet application",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "author": "Aman Singh",
+    "license": "MIT",
+    "devDependencies": {
+        "electron": "^12.0.8"
+    }
+}

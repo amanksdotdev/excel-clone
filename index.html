@@ -5,96 +5,213 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Excel Clone</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
-            href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lato:ital,wght@0,400;0,700;1,400&family=Noto+Sans:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,400;0,700;1,400&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cedarville+Cursive&family=Courgette&family=Courier+Prime:ital@0;1&family=Dancing+Script:wght@500&family=Gloria+Hallelujah&family=Oswald:wght@300&family=Overpass+Mono&family=Peddana&family=Roboto:wght@100&family=Rubik:ital,wght@0,300;1,500&family=Yellowtail&display=swap"
             rel="stylesheet"
         />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         />
-        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./css/main.css" />
     </head>
     <body>
-        <div class="menu-container">
-            <div class="formatting-container">
-                <div class="subgroup">
-                    <div class="font-container">
-                        <select name="fonts" id="fonts">
-                            <option value="Roboto" selected="selected">
-                                Roboto
-                            </option>
-                            <option value="Lato">Lato</option>
-                            <option value="Noto Sans">Noto Sans</option>
-                            <option value="Ubuntu Mono">Ubuntu Mono</option>
-                            <option value="Dancing Script">
-                                Dancing Script
-                            </option>
-                        </select>
+        <div class="menu">
+            <div class="menu__top">
+                <img
+                    class="menu__logo"
+                    src="./img/logo.png"
+                    alt="sheets-logo"
+                />
+                <div class="menu__file">
+                    <div class="menu__title">
+                        <input
+                            value="Untitled Spreadsheet"
+                            type="text"
+                            id="menu__title-input"
+                        />
                     </div>
-                    <div class="style-btn-container">
-                        <button class="bold-btn btn">B</button>
-                        <button class="underline-btn btn">U</button>
-                        <button class="italic-btn btn">I</button>
-                    </div>
-                </div>
-
-                <div class="subgroup">
-                    <div class="font-size-container">
-                        <select name="font-size" id="font-size">
-                            <option value="8">8</option>
-                            <option value="10">10</option>
-                            <option value="12">12</option>
-                            <option value="16" selected="selected">16</option>
-                            <option value="20">20</option>
-                            <option value="32">32</option>
-                        </select>
-                    </div>
-
-                    <div class="color-container">
-                        <input type="color" name="fgcolor" id="fgcolor" />
-                        <input type="color" name="bgcolor" id="bgcolor" />
+                    <div class="menu__filemenu">
+                        <div class="menu__new">New</div>
+                        <div class="menu__open">Open</div>
+                        <div class="menu__save">Save</div>
+                        <input type="file" class="file-input" style="display: none;">
                     </div>
                 </div>
             </div>
-            <div class="alignment-container">
-                <button class="left-align btn active-btn">L</button>
-                <button class="center-align btn">C</button>
-                <button class="right-align btn">R</button>
+            <div class="menu__formatting">
+                <div class="menu__fontFamily">
+                    <select name="font-family" id="font">
+                        <option value="arial" style="font-family: 'arial'" selected>
+                            Arial
+                        </option>
+                        <option
+                            value="'Caveat', cursive"
+                            style="font-family: 'Caveat', cursive"
+                        >
+                            Caveat
+                        </option>
+                        <option
+                            value="'Cedarville Cursive', cursive"
+                            style="font-family: 'Cedarville Cursive', cursive"
+                        >
+                            Cedarville
+                        </option>
+                        <option
+                            value="'Courgette', cursive"
+                            style="font-family: 'Courgette', cursive"
+                        >
+                            Courgette
+                        </option>
+                        <option
+                            value="'Courier Prime' , monospace"
+                            style="font-family: 'Courier Prime', monospace"
+                        >
+                            Courier Prime
+                        </option>
+                        <option
+                            value="'Dancing Script', cursive"
+                            style="font-family: 'Dancing Script', cursive"
+                        >
+                            Dancing Script
+                        </option>
+                        <option
+                            value="'Gloria Hallelujah', cursive"
+                            style="font-family: 'Gloria Hallelujah', cursive"
+                        >
+                            Gloria Hallelujah
+                        </option>
+                        <option
+                            value="'Oswald', sans-serif"
+                            style="font-family: 'Oswald', sans-serif"
+                        >
+                            Oswald
+                        </option>
+                        <option
+                            value="Overpass Mono', monospace"
+                            style="font-family: 'Overpass Mono', monospace"
+                        >
+                            Overpass Mono
+                        </option>
+                        <option
+                            value="'Peddana', serif"
+                            style="font-family: 'Peddana', serif"
+                        >
+                            Peddana
+                        </option>
+                        <option
+                            value="'Roboto', sans-serif"
+                            style="font-family: 'Roboto', sans-serif"
+                        >
+                            Roboto
+                        </option>
+                        <option
+                            value="'Rubik', sans-serif"
+                            style="font-family: 'Rubik', sans-serif"
+                        >
+                            Rubik
+                        </option>
+                        <option
+                            value="'Yellowtail', cursive"
+                            style="font-family: 'Yellowtail', cursive"
+                        >
+                            Yellowtail
+                        </option>
+                    </select>
+                </div>
+                <div class="menu__fontSize">
+                    <select name="fontsize" id="fontsize">
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                        <option value="14">14</option>
+                        <option value="16" selected>16</option>
+                        <option value="18">18</option>
+                        <option value="20">20</option>
+                        <option value="22">22</option>
+                        <option value="24">24</option>
+                        <option value="26">26</option>
+                        <option value="28">28</option>
+                        <option value="30">30</option>
+                        <option value="32">32</option>
+                    </select>
+                </div>
+                <div class="menu__textStyling">
+                    <i class="fas fa-bold menu-btn menu-btn--bold"></i>
+                    <i
+                        class="fas fa-underline menu-btn menu-btn--underline"
+                    ></i>
+                    <i class="fas fa-italic menu-btn menu-btn--italic"></i>
+                    <i
+                        class="
+                            fas
+                            fa-strikethrough
+                            menu-btn menu-btn--strikethrough
+                        "
+                    ></i>
+
+                    <div class="menu-btn--fontColor">
+                        <i class="fas fa-font menu-btn"> </i>
+                        <div class="menu-btn--colorDiv"></div>
+                    </div>
+                    <input type="color" class="font-color hidden" />
+                </div>
+
+                <div class="menu__align">
+                    <i
+                        class="
+                            fas
+                            fa-align-left
+                            menu-btn menu-btn--left menu-btn--active
+                            align
+                        "
+                    ></i>
+                    <i
+                        class="fas fa-align-center menu-btn menu-btn--center"
+                    ></i>
+                    <i class="fas fa-align-right menu-btn menu-btn--right"></i>
+                </div>
             </div>
         </div>
-        <div class="formula-container">
-            <input type="text" class="address-box" readonly />
-            <div class="separator">:</div>
-            <input type="text" class="formula-box" />
+        <!-- menu  -->
+
+        <div class="formula">
+            <input class="formula__address-box" type="text" readonly />
+
+            <input
+                class="formula__formula-box"
+                type="text"
+                placeholder="enter formula"
+            />
         </div>
-        <div class="grid-container">
-            <div class="top-left-block"></div>
-            <div class="top-row">
-                <!-- <div class="col"></div> -->
+
+        <div class="grid">
+            <div class="grid__top-left-block"></div>
+            <div class="grid__top-row">
+                <!-- <div class="gird__col grid__col--top"></div> -->
             </div>
-            <div class="left-col">
-                <!-- <div class="left-col-box"></div> -->
+            <div class="grid__left-col">
+                <!-- <div class="grid__left-col-box"></div> -->
             </div>
-            <div class="grid">
-                <div class="col"></div>
+            <div class="grid__cells-container">
+                <!-- <div class="grid__row">
+                    <div class="grid__col"></div>
+                </div> -->
             </div>
         </div>
+
         <div class="sheets">
-            <div class="add-sheet_container cursor-pointer">
-                <i class="fas fa-plus icon"></i>
+            <div class="sheets__add-btn">
+                <i class="fas fa-plus"></i>
             </div>
-            <div class="sheets-list">
-                <div class="sheet active-sheet cursor-pointer" sheetIdx="0">
+            <div class="sheets__list">
+                <div class="sheets__sheet sheets__sheet--active" sheetIdx="0">
                     Sheet 1
                 </div>
             </div>
         </div>
-
-        <script src="./init.js" defer></script>
-        <script src="./script.js" defer></script>
+        <script src="./scripts/domlist.js" defer></script>
+        <script src="./scripts/init.js" defer></script>
+        <script src="./scripts/database.js" defer></script>
+        <script src="./scripts/script.js" defer></script>
     </body>
 </html>
