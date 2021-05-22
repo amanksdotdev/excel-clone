@@ -485,6 +485,8 @@ menu_new.addEventListener("click", () => {
     //reset open file input so that change event will work if we open the same file after making a new sheet
     fileInputEl.value = "";
 
+    menu_titleInput.value = workSheetDB.title;
+
     //reseting sheets ui
     resetSheetsUI();
 });
