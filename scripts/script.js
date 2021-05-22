@@ -42,7 +42,7 @@ const updateUI = function () {
 
     for (const cell of allCells) {
         //handle cell height due to active cell border
-        handleCellHeight(cell);
+        // handleCellHeight(cell);
 
         //update ui according to cell data
         const [rid, cid] = [cell.getAttribute("rid"), cell.getAttribute("cid")];
@@ -51,56 +51,68 @@ const updateUI = function () {
         //bold btn update
         if (cellObj.bold) {
             menu_boldBtn.classList.add("menu-btn--active");
+            cell.style.fontWeight = "bold";
         } else {
             menu_boldBtn.classList.remove("menu-btn--active");
+            cell.style.fontWeight = "normal";
         }
 
         //underline btn update
         if (cellObj.underline) {
             menu_underlineBtn.classList.add("menu-btn--active");
+            cell.style.textDecoration = "underline";
         } else {
             menu_underlineBtn.classList.remove("menu-btn--active");
+            cell.style.textDecoration = "none";
         }
 
         //italic btn update
         if (cellObj.italic) {
             menu_italicBtn.classList.add("menu-btn--active");
+            cell.style.fontStyle = "italic";
         } else {
             menu_italicBtn.classList.remove("menu-btn--active");
+            cell.style.fontStyle = "normal";
         }
 
         //strikethrough btn update
         if (cellObj.strikethrough) {
             menu_strikethroughBtn.classList.add("menu-btn--active");
+            cell.style.textDecoration = "line-through";
         } else {
             menu_strikethroughBtn.classList.remove("menu-btn--active");
+            cell.style.textDecoration = "none";
         }
 
         // alignment btn update
         switch (cellObj.alignment) {
             case "left":
-                handleAlignment("left", menu_leftAlignBtn);
+                handleAlignment("left", menu_leftAlignBtn, cell);
                 break;
             case "center":
-                handleAlignment("center", menu_centerAlignBtn);
+                handleAlignment("center", menu_centerAlignBtn, cell);
                 break;
             case "right":
-                handleAlignment("right", menu_rightAlignBtn);
+                handleAlignment("right", menu_rightAlignBtn, cell);
                 break;
         }
 
         //color picker update
         if (cellObj.color != "") {
             menu_colorPickerDiv.style.backgroundColor = cellObj.color;
+            cell.style.color = cellObj.color;
         } else {
             menu_colorPickerDiv.style.backgroundColor = "black";
+            cell.style.color = "black";
         }
 
         //font selector update
         menu_fontFamily.value = cellObj.fontFamily;
+        cell.style.fontFamily = cellObj.fontFamily;
 
         //font size update
         menu_fontSize.value = cellObj.fontSize;
+        cell.style.fontSize = cellObj.fontSize;
 
         //value update
         cell.innerText = cellObj.value;
@@ -247,7 +259,7 @@ const handleFontColor = function (color) {
     sheetDB[rid][cid].color = color;
 };
 
-const handleAlignment = function (alignment, btnEl) {
+const handleAlignment = function (alignment, btnEl, cell) {
     //reset active class
     menu_leftAlignBtn.classList.remove("menu-btn--active");
     menu_rightAlignBtn.classList.remove("menu-btn--active");
@@ -255,11 +267,10 @@ const handleAlignment = function (alignment, btnEl) {
 
     //update ui
     btnEl.classList.add("menu-btn--active");
-    const cell = getCurrentCell();
     cell.style.textAlign = alignment;
 
     //update database
-    const [rid, cid] = getCurrentCellRidCid();
+    const [rid, cid] = [cell.getAttribute("rid"), cell.getAttribute("cid")];
     sheetDB[rid][cid].alignment = alignment;
 };
 
@@ -564,13 +575,13 @@ menu_strikethroughBtn.addEventListener("click", handleStrikethrough);
 
 //alignment btn
 menu_leftAlignBtn.addEventListener("click", (e) => {
-    handleAlignment("left", e.target);
+    handleAlignment("left", e.target, getCurrentCell());
 });
 menu_rightAlignBtn.addEventListener("click", (e) => {
-    handleAlignment("right", e.target);
+    handleAlignment("right", e.target, getCurrentCell());
 });
 menu_centerAlignBtn.addEventListener("click", (e) => {
-    handleAlignment("center", e.target);
+    handleAlignment("center", e.target, getCurrentCell());
 });
 
 //font family btn
