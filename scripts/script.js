@@ -667,13 +667,13 @@ allCells.forEach((cell) => {
         // alignment btn update
         switch (cellObj.alignment) {
             case "left":
-                handleAlignment("left", menu_leftAlignBtn);
+                handleAlignment("left", menu_leftAlignBtn, cell);
                 break;
             case "center":
-                handleAlignment("center", menu_centerAlignBtn);
+                handleAlignment("center", menu_centerAlignBtn, cell);
                 break;
             case "right":
-                handleAlignment("right", menu_rightAlignBtn);
+                handleAlignment("right", menu_rightAlignBtn, cell);
                 break;
         }
 
