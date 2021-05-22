@@ -717,36 +717,71 @@ const firstSheetEl = document.querySelector(".sheets__sheet");
 firstSheetEl.addEventListener("click", handleSheetChange);
 
 /*********************FORMULA LOGIC*****************/
-//TODO isCycle --> cycle detection on formula
-// const isCycle = function (sheetDB, childID, formula) {
-//     const formulaArr = formula.split(" ");
 
-//     for (let i = 0; i < formulaArr.length; i++) {
-//         let ascii = formulaArr[i].charCodeAt(0);
-//         if (ascii >= 65 && ascii <= 90) {
-//             let parentCellID = formulaArr[i];
-//             let pcell = getCell(parentCellID);
-//             let rid = pcell.getAttribute("rid");
-//             let cid = pcell.getAttribute("cid");
+const isCycle = function (cellID, formula) {
+    const formulaArr = formula.split(" ");
 
-//             sheetDB[rid][cid].children.push(childID);
-//         }
-//     }
-// };
+    const cell = getCell(cellID);
+    const rid = cell.getAttribute("rid");
+    const cid = cell.getAttribute("cid");
+    const cellObj = sheetDB[rid][cid];
+    const children = cellObj.children;
+
+    for (let i = 0; i < children.length; i++) {
+        const childID = children[i];
+        for (let j = 0; j < formulaArr.length; j++) {
+            let ascii = formulaArr[j].charCodeAt(0);
+            if (ascii >= 65 && ascii <= 90) {
+                const parentCellID = formulaArr[j];
+                if (parentCellID == childID) {
+                    return true;
+                }
+            }
+        }
+        return isCycle(childID, formula);
+    }
+
+    return false;
+};
 
 formula_formulaBox.addEventListener("keydown", (e) => {
     if (e.key == "Enter") {
         const formula = e.target.value;
-        const actualFormula = getFormula(formula);
-        const value = evaluateFormula(actualFormula);
         const cell = getCurrentCell();
         const [rid, cid] = getCurrentCellRidCid();
         const cellObj = sheetDB[rid][cid];
 
-        //if already has formula then remove it
+        const oldFormula = cellObj.formula;
+
+        //if same formula entered return
+        if (oldFormula == formula) {
+            return;
+        }
+
+        //if non empty new formula entered remove old formula
         if (cellObj.formula != "") {
             removeFormula(cellObj.formula, formula_addressBox.value, cellObj);
         }
+        //set new formula
+        setChild(formula, formula_addressBox.value);
+
+        //if cycle detected remove new formula and add old formula
+        if (isCycle(formula_addressBox.value, formula)) {
+            removeFormula(formula, formula_addressBox.value, cellObj);
+
+            //set old formula
+            setChild(oldFormula, formula_addressBox.value);
+
+            cellObj.formula = oldFormula;
+            formula_formulaBox.value = oldFormula;
+
+            alert("cycle detected, formula didn't update");
+            return;
+        }
+
+        //solve new formula
+        const actualFormula = getFormula(formula);
+        const value = evaluateFormula(actualFormula);
 
         //update ui
         cell.innerText = value;
@@ -754,8 +789,6 @@ formula_formulaBox.addEventListener("keydown", (e) => {
         //update db
         cellObj.formula = formula;
         cellObj.value = value;
-
-        setChild(formula, formula_addressBox.value);
     }
 });
 
