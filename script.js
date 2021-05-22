@@ -9,6 +9,7 @@ const rightAlign = document.querySelector(".right-align");
 const AllCells = document.querySelectorAll(".grid .col");
 
 const addressBox = document.querySelector(".address-box");
+const formulaBox = document.querySelector(".formula-box");
 
 const fontSizeInput = document.getElementById("font-size");
 
@@ -115,7 +116,7 @@ const setUI = function () {
         }
     }
     AllCells[0].click();
-    fontSizeInput.value = sheetDB[0][0].fontFamily;
+    // fontSizeInput.value = sheetDB[0][0].fontFamily;
 };
 
 const updateDB = function (cell) {
@@ -161,6 +162,12 @@ const updateDB = function (cell) {
     cellObj.value = cell.innerText || "";
     cellObj.fontFamily = cell.style.fontFamily || "Roboto";
     cellObj.fontSize = cell.style.fontSize || "16px";
+
+    updateChildren(cellObj);
+
+    if (cellObj.formula) {
+        removeFormula(cellObj.formula, addressBox.value, cellObj);
+    }
 };
 
 // EVENT LISTENERS
@@ -207,7 +214,7 @@ addsheetBtn.addEventListener("click", () => {
     setUI(sheetDB);
 });
 
-//****Adding click event to every cell*******
+//****Adding events to every cell*******
 for (let cell of AllCells) {
     cell.addEventListener("click", () => {
         //1. getting cell row and col of cell and setting in addressBox
@@ -274,13 +281,40 @@ for (let cell of AllCells) {
         cellObj.value = cell.innerText || "";
         cellObj.fontFamily = cell.style.fontFamily || "Roboto";
         cellObj.fontSize = cell.style.fontSize || "16px";
-        console.log(cellObj);
+
+        updateChildren(cellObj);
+
+        if (cellObj.formula) {
+            formulaBox.value = cellObj.formula;
+        } else {
+            formulaBox.value = "";
+        }
     });
 
     cell.addEventListener("keyup", () => {
         updateDB(cell);
+
+        //update height of left box
+        let cellHeight = cell.getBoundingClientRect().height;
+        let rid = cell.getAttribute("rid");
+        let leftRowBox = document.querySelectorAll(".left-col-box")[rid];
+        let leftRowBoxHeight = leftRowBox.getBoundingClientRect().height;
+        if (cellHeight != leftRowBoxHeight) {
+            leftRowBox.style.height = cellHeight + "px";
+        }
     });
 }
+
+//make top row and left row sticky
+document.querySelector(".grid-container").addEventListener("scroll", (e) => {
+    let top = e.target.scrollTop;
+    let left = e.target.scrollLeft;
+    const topLeftBlock = document.querySelector('.top-left-block');
+    topLeftBlock.style.top = top + "px";
+    topLeftBlock.style.left = left + "px";
+    topRow.style.top = top + "px";
+    leftCol.style.left = left + "px";
+});
 
 //selecting first cell initially
 AllCells[0].click();
@@ -289,8 +323,11 @@ AllCells[0].click();
 //font size input handle
 fontSizeInput.addEventListener("change", () => {
     const cell = getCurrentCell();
+    const [rid, cid] = getCurrentCellRidCid();
+    const cellObj = sheetDB[rid][cid];
     const fontSize = fontSizeInput.value;
     cell.style.fontSize = fontSize + "px";
+    cellObj.fontSize = fontSize;
 });
 
 //bold button handle
@@ -361,19 +398,23 @@ document.getElementById("fonts").addEventListener("change", (e) => {
 //font color change
 document.getElementById("fgcolor").addEventListener("change", (e) => {
     const cell = getCurrentCell();
+    const [rid, cid] = getCurrentCellRidCid();
+    const cellObj = sheetDB[rid][cid];
     const fontColorEl = e.currentTarget;
     const color = fontColorEl.value;
-    console.log(color);
     cell.style.color = color;
+    cellObj.fgcolor = color;
 });
 
 //cell background color
 document.getElementById("bgcolor").addEventListener("change", (e) => {
     const cell = getCurrentCell();
-    const fontColorEl = e.currentTarget;
-    const color = fontColorEl.value;
-    console.log(color);
+    const [rid, cid] = getCurrentCellRidCid();
+    const cellObj = sheetDB[rid][cid];
+    const bgColorEl = e.currentTarget;
+    const color = bgColorEl.value;
     cell.style.backgroundColor = color;
+    cellObj.bgcolor = color;
 });
 
 // alignment handler
@@ -386,3 +427,98 @@ centerAlign.addEventListener("click", (e) => {
 rightAlign.addEventListener("click", (e) => {
     alignmentHandler("right", e.target);
 });
+
+//*******FORMULA SOLVER*********** */
+
+document.querySelector(".formula-box").addEventListener("keydown", (e) => {
+    if (e.key == "Enter" && e.target.value != "") {
+        let formula = e.target.value;
+        e.target.value = "";
+        let val = evaluateFormula(formula);
+        const [rid, cid] = getCurrentCellRidCid();
+
+        const cellObj = sheetDB[rid][cid];
+        if (cellObj.formula) {
+            removeFormula(cellObj.formula, addressBox.value, cellObj);
+        }
+
+        //update db
+        cellObj.formula = formula;
+        cellObj.value = val;
+
+        //update ui
+        const cell = getCurrentCell();
+        cell.innerText = val;
+
+        setChildren(formula, addressBox.value);
+    }
+});
+
+function evaluateFormula(formula) {
+    let formulaArr = formula.split(" ");
+
+    for (let i = 0; i < formulaArr.length; i++) {
+        let ascii = formulaArr[i].charCodeAt(0);
+        if (ascii >= 65 && ascii <= 90) {
+            let parentCellId = formulaArr[i];
+            let pcell = getCell(parentCellId);
+            formulaArr[i] = pcell.innerText;
+        }
+    }
+
+    let finalFormula = formulaArr.join(" ");
+
+    return eval(finalFormula);
+}
+
+function updateChildren(cellObj) {
+    let children = cellObj.children;
+    for (let i = 0; i < children.length; i++) {
+        let childId = children[i];
+        let childCell = getCell(childId);
+        let cid = childCell.getAttribute("cid");
+        let rid = childCell.getAttribute("rid");
+
+        let childCellObj = sheetDB[rid][cid];
+        let formula = childCellObj.formula;
+        let value = evaluateFormula(formula);
+        childCell.innerText = value;
+        childCellObj.value = value;
+        updateChildren(childCellObj);
+    }
+}
+
+function setChildren(formula, cellId) {
+    let formulaArr = formula.split(" ");
+
+    for (let i = 0; i < formulaArr.length; i++) {
+        let ascii = formulaArr[i].charCodeAt(0);
+        if (ascii >= 65 && ascii <= 90) {
+            let parentCellId = formulaArr[i];
+            let pcell = getCell(parentCellId);
+            let rid = pcell.getAttribute("rid");
+            let cid = pcell.getAttribute("cid");
+
+            sheetDB[rid][cid].children.push(cellId);
+        }
+    }
+}
+
+function removeFormula(formula, currentCellId, cellObj) {
+    let formulaArr = formula.split(" ");
+
+    for (let i = 0; i < formulaArr.length; i++) {
+        let ascii = formulaArr[i].charCodeAt(0);
+        if (ascii >= 65 && ascii <= 90) {
+            let parentCellId = formulaArr[i];
+            let pcell = getCell(parentCellId);
+            let rid = pcell.getAttribute("rid");
+            let cid = pcell.getAttribute("cid");
+            let parenCellObj = sheetDB[rid][cid];
+            let idx = parenCellObj.children.indexOf(currentCellId);
+
+            parenCellObj.children.splice(idx, 1);
+        }
+    }
+    cellObj.formula = "";
+}

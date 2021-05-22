@@ -41,6 +41,10 @@ const initSheet = function () {
                 underline: false,
                 fontFamily: "Roboto",
                 fontSize: "16",
+                fgcolor: "",
+                bgcolor: "",
+                formula: "",
+                children: [],
                 alignment: "left",
                 value: "",
             };

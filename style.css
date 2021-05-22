@@ -134,6 +134,8 @@ body {
     min-width: 40px;
     background-color: var(--litegray);
     /* border: 1px solid var(--litegray); */
+    position: absolute;
+    z-index: 100;
 }
 
 .top-row {
@@ -144,6 +146,7 @@ body {
     top: 0px;
     left: 40px;
     overflow: auto;
+    z-index: 90;
 }
 
 .col {
@@ -153,10 +156,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 3px;
 }
 
 .left-col {
     width: 40px;
+    position: absolute;
+    top: 30px;
+    z-index: 90;
 }
 
 .left-col-box {
