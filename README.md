@@ -10,11 +10,13 @@ OR
 
 Download for your operating system
 
-<a href="https://google.com"><img src="https://user-images.githubusercontent.com/40262320/119237731-f3b3d880-bb5b-11eb-9349-4a2ebf50a6ee.png" width="150"></a>
+NOT AVAILABLE FOR WINDOWS AT THE MOMENT!
 
-<a href="https://google.com"><img src="https://user-images.githubusercontent.com/40262320/119237840-9c623800-bb5c-11eb-8f99-271b0f78a44c.png" width="150"></a>
+<img src="https://user-images.githubusercontent.com/40262320/119237731-f3b3d880-bb5b-11eb-9349-4a2ebf50a6ee.png" width="150">
 
-<a href="https://google.com"><img src="https://user-images.githubusercontent.com/40262320/119237951-46da5b00-bb5d-11eb-812c-1d758421545d.png" width="100"></a>
+<a href="https://drive.google.com/drive/folders/1zxbZsI5DE1y14Fi3ouqAQ9dQvODFMdBb?usp=sharing" target="_blank"><img src="https://user-images.githubusercontent.com/40262320/119237840-9c623800-bb5c-11eb-8f99-271b0f78a44c.png" width="150"></a>
+
+<a href="https://drive.google.com/drive/folders/18f81F2m4aDxcUgwGsneml0c_nQiGyskX?usp=sharing" target="_blank"><img src="https://user-images.githubusercontent.com/40262320/119237951-46da5b00-bb5d-11eb-812c-1d758421545d.png" width="100"></a>
 
 ## Features
 1. Formatting - Bold, Italic, Underline, Strikethrough, fonts family, font size and alignment.
