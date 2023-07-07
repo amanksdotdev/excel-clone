@@ -4,7 +4,7 @@ This is a cross platform spreadsheet application I made with HTML, CSS, JavaScri
 
 ## Installation
 
-Try the web verison by going [here](https://amanksingh99.github.io/excel-clone/).
+Try the web verison by going [here](https://amanksdotdev.github.io/excel-clone/).
 
 OR
 
