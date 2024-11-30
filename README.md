@@ -1,5 +1,7 @@
 # excel-clone
 
+> Note: This was a very naive brute force approach of mine to implement excel features, this project was good for learning but isn't great in performance and obviously not good for actual use. I'm planning to do an update on this project with TypeScript and React for improved performance and state management. I'll keep the vanilla javascript implementation in a branch for future reference and learning purpose.` 
+
 This is a cross platform spreadsheet application I made with HTML, CSS, JavaScript and Electronjs for packaging builds.
 
 ## Installation
